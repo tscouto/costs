@@ -20,70 +20,72 @@ function Projects() {
 
     useEffect(() => {
 
+
         setTimeout(() => {
             fetch('http://localhost:5000/projects', {
-                method:'GET',
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 }
-            }).then(resp =>  resp.json())
-            .then(data=> {
-                console.log(data)
-                setProjects(data)
-                setRemoveLoading(true)
-            })
-            .catch(error => console.log(error))
+            }).then(resp => resp.json())
+                .then(data => {
+                    console.log(data)
+                    setProjects(data)
+                    setRemoveLoading(true)
+                })
+                .catch(error => console.log(error))
         }, 300);
-       
+
 
     }, [])
 
     function removeProject(id) {
         fetch(`http://localhost:5000/projects/${id}`, {
-            method:'DELETE',
+            method: 'DELETE',
             headers: {
-                'Content-Type':'application/json'
+                'Content-Type': 'application/json'
             },
-        }).then(resp => resp.json() )
-        .then(() =>{
-            setProjects(projects.filter((project)=> project.id !== id))
-            setProjectMessage('Projeto removido com sucesso')
-        })
-        .catch(err => console.log(err))
-        
+        }).then(resp => resp.json())
+            .then(() => {
+                setProjects(projects.filter((project) => project.id !== id))
+                setProjectMessage('Projeto removido com sucesso')
+            })
+            .catch(err => console.log(err))
+
     }
 
     return (
         <div className={styles.project_container}>
-            <div className={styles.title_container }>
+            <div className={styles.title_container}>
                 <h1>Meus projetos</h1>
                 <LinkButton to="/newproject" text="Criar Projeto" />
-                </div>
-                {/* <a href="#">novo projeto</a> */}
-                {message && <Message type="success" msg={message} />}
-                {projectMessage && <Message type="success" msg={projectMessage} />}
-                <Container customClass="start">
-                    {projects.length > 0 && 
-                    projects.map((project)=> (
-                        <ProjectCard 
-                        id={project.id}
-                        name={project.name}
-                        budget={project.budget}
-                        category={project.category.name}
-                        key={project.id}
-                        handleRemove={removeProject}
+            </div>
+            {/* <a href="#">novo projeto</a> */}
+            {message && <Message type="success" msg={message} />}
+            {projectMessage && <Message type="success" msg={projectMessage} />}
+            <Container customClass="start">
+                {projects.length > 0 &&
+                    projects.map((project) => (
+                        <ProjectCard
+                            id={project.id}
+                            name={project.name}
+                            budget={project.budget}
+                            category={project.category.name}
+                            key={project.id}
+                            handleRemove={removeProject}
 
                         />
-                   ))}
-                   {!removeLoading && <Loading />}
-                   {removeLoading && projects.length === 0 && (
-                    <p>Nao ha projetos cadastrados</p>
+                    ))}
+                {!removeLoading && <Loading />}
+                {removeLoading && projects.length === 0 && (
+                    <div>
+                        <p>Nao ha projetos cadastrados</p>
+                    </div>
+                )}
 
-                   )}
+                <p>Projetos...</p>
+            </Container>
 
-                    <p>Projetos...</p>
-                </Container>
-            
 
         </div>
     )
