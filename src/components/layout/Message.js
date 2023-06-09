@@ -9,6 +9,7 @@ function Message({type, msg}) {
             setVisible(false)
             return
           }  
+
           setVisible(true)
 
           const timer = setTimeout(() => {
@@ -18,6 +19,7 @@ function Message({type, msg}) {
           return () => clearTimeout(timer)
 
     }, [msg])
+
     return(
         <>
             { visible && (

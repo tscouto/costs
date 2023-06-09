@@ -1,5 +1,5 @@
-import Message from "../layout/Message.js"
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min.js"
+import Message from "../layout/Message"
+import { useLocation } from "react-router-dom"
 import styles from './Projects.module.css'
 import Container from '../layout/Container.js'
 import LinkButton from "../layout/LinkButton.js"
@@ -26,14 +26,14 @@ function Projects() {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                }
+                },
             }).then(resp => resp.json())
                 .then(data => {
                     console.log(data)
                     setProjects(data)
                     setRemoveLoading(true)
                 })
-                .catch(error => console.log(error))
+                .catch((error) => console.log(error))
         }, 300);
 
 
@@ -61,6 +61,7 @@ function Projects() {
                 <LinkButton to="/newproject" text="Criar Projeto" />
             </div>
             {/* <a href="#">novo projeto</a> */}
+
             {message && <Message type="success" msg={message} />}
             {projectMessage && <Message type="success" msg={projectMessage} />}
             <Container customClass="start">

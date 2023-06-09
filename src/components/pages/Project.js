@@ -2,19 +2,23 @@ import styles from './Project.module.css'
 
 import {parse, v4 as uuidv4} from 'uuid'
 
-import { useParams } from 'react-router-dom/cjs/react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Loading from '../layout/Loading'
 import Container from '../layout/Container'
 import Message from '../layout/Message'
 import ProjectForm from '../project/ProjectForm'
 import ServiceForm from '../service/ServiceForm'
+import ServiceCard from '../service/ServiceCard'
+
+
 function Project() {
 
     const { id } = useParams()
     const [project, setProject] = useState([])
     const [showProjectFrom, setShowProjectForm] = useState(false)
-    const [showServiceForm] = useState(false)
+    const [services, setServices] = useState([])
+    const [showServiceForm,setShowServiceForm] = useState(false)
     const [message, setMensagem] = useState()
     const [type, setType] = useState()
    
@@ -22,7 +26,7 @@ function Project() {
 
     useEffect(() => {
         setTimeout(() => {
-            fetch(`http://localhost:5000/projects${id}`, {
+            fetch(`http://localhost:5000/projects/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-type': 'application/json'
@@ -30,10 +34,11 @@ function Project() {
             }).then((resp) => resp.json())
                 .then((data) => {
                     setProject(data)
+                    setServices(data.services)
                 })
 
                 .catch(err => console.log(err))
-        }, 5000);
+        }, 300);
 
     }, [id])
 
@@ -90,17 +95,47 @@ function Project() {
         }).then(resp => resp.json())
         .then(data=> {
             setProject(data)
+           
+            setShowServiceForm(false)
         })
         .catch(err => console.log(err))
 
     }
 
-    function toggleProjectForm() {
-        setShowProjectForm(!setShowProjectForm)
-    }
 
     function toggleServiceForm() {
-        showServiceForm(!showServiceForm)
+        setShowServiceForm(!showServiceForm)
+      }
+      
+
+
+function removeService(id, cost) {
+    const serviceUptaded = project.services.filter((service)=> service.id != id)
+    const projectUpdated = project
+
+    projectUpdated.services = serviceUptaded
+    projectUpdated.cost = parseFloat(serviceUptaded) - parseFloat(cost)
+
+    fetch(`http://localhost:5000/projects/${projectUpdated.id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(projectUpdated)
+    }).then((resp)=> resp.json())
+    .then((data)=> {
+        setProject(projectUpdated)
+        setServices(serviceUptaded)
+        setMensagem('Servico removido com sucesso!')
+
+    })
+    .catch(err => console.log(err))
+}
+
+
+
+    function toggleServiceForm() {
+        setShowServiceForm(!showServiceForm)
     }
 
     return (<>{project.name ? (
@@ -109,7 +144,7 @@ function Project() {
                 {message && <Message type={type} msg={message} />}
                 <div>
                     <h1>Projeto: {project.name}</h1>
-                    <button className={styles.btn} onClick={toggleProjectForm}>
+                    <button className={styles.btn} onClick={toggleServiceForm}>
                         {!showProjectFrom ? 'Editar projeto' : 'Fechar'}
                     </button>
                     {!showProjectFrom ? (
@@ -137,7 +172,7 @@ function Project() {
                     </button>
                     <div className={styles.project_info}>
                         { showServiceForm && (
-                            <serviceForm 
+                            <ServiceForm 
                             handleSubmit={createService}
                             btnText="Adicionar Servico"
                             projectData={project}
@@ -147,7 +182,22 @@ function Project() {
                 </div>
                 <h2>Servicos</h2>
                 <Container customClass="start">
-                        <p>Itens de servicos</p>
+                        {services.length > 0 &&
+                        services.map((services)=> (
+                            <ServiceCard
+                            id={services.id} 
+                            name={services.name} 
+                            cost={services.cost} 
+                            description={services.description} 
+                            key={services.id}
+                            handleRemove={removeService} 
+                            
+                            />
+
+                        ))
+                            
+                        }
+                        {services.length === 0 && <p>Nao ha servicos cadastrados</p>}
                 </Container>
             </Container>
         </div>

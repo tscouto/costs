@@ -7,7 +7,7 @@
 
 }
 
-.project_Card h4 {
+.project_card h4 {
     background-color: #222;
     color: #FFBB33;
     padding: .4em;
@@ -38,7 +38,7 @@
     height: 12px;
     border-radius: 50px;
     background-color: #CCC;
-    margin-right: 50px;
+    margin-right: 5px;
 }
 
 .category_text .infar {

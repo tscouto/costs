@@ -1,37 +1,5 @@
 {
-  "projects": [
-    {
-      "name": "Tiago",
-      "budget": "4999",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 1
-    },
-    {
-      "category": {
-        "id": "1",
-        "name": "Infra"
-      },
-      "name": "Tiago S Couto",
-      "budget": "3",
-      "cost": 0,
-      "services": [],
-      "id": 2
-    },
-    {
-      "category": {
-        "id": "3",
-        "name": "Design"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 3
-    }
-  ],
+  "projects": [],
   "categories": [
     {
       "id": 1,

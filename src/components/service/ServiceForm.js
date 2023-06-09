@@ -6,9 +6,9 @@ import SubmitButton from '../form/SubmitButton'
 
 
 
-function ServiceForm ({handleSubmit, btnText, projectData}) {
+function ServiceForm({ handleSubmit, btnText, projectData }) {
 
-    const [ service, setService] = useState()
+    const [service, setService] = useState()
 
     function submit(e) {
         e.preventDefault()
@@ -17,31 +17,31 @@ function ServiceForm ({handleSubmit, btnText, projectData}) {
     }
 
     function handleChange(e) {
-        setService({...service, [e.target.name]: e.target.value})
+        setService({ ...service, [e.target.name]: e.target.value })
     }
 
     return (
         <form onSubmit={submit} className={styles.form}>
             <Input
-            type="text"
-            text="Nome do servico"
-            name="name"
-            placeholder="Insira o nome do servico"
-            handleOnChange={handleChange}
+                type="text"
+                text="Nome do servico"
+                name="name"
+                placeholder="Insira o nome do servico"
+                handleOnChange={handleChange}
             />
             <Input
-            type="number"
-            text="Custo do servico"
-            name="cost"
-            placeholder="Insira o valor total"
-            handleOnChange={handleChange}
+                type="number"
+                text="Custo do servico"
+                name="cost"
+                placeholder="Insira o valor total"
+                handleOnChange={handleChange}
             />
             <Input
-            type="text"
-            text="Descricao do servico"
-            name="description"
-            placeholder="Descreva o servico"
-            handleOnChange={handleChange}
+                type="text"
+                text="Descricao do servico"
+                name="description"
+                placeholder="Descreva o servico"
+                handleOnChange={handleChange}
             />
             < SubmitButton text={btnText} />
         </form>
