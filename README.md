@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Costs - Gerenciamento de Projetos
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+O **Costs** é um aplicativo web desenvolvido para auxiliar no gerenciamento de projetos, permitindo que os usuários criem, editem e visualizem projetos, além de adicionarem serviços específicos para cada projeto. Com foco na simplicidade e praticidade, o aplicativo oferece uma interface intuitiva e funcionalidades essenciais para o controle financeiro de projetos.
 
-## Available Scripts
+## Funcionalidades
 
-In the project directory, you can run:
+- **Cadastro de Projetos**: Permite criar novos projetos com informações como nome, descrição e custos iniciais.
+- **Adição de Serviços**: O usuário pode adicionar serviços aos projetos, controlando os custos de cada serviço.
+- **Exibição de Projetos**: O aplicativo exibe todos os projetos cadastrados, permitindo ao usuário visualizar os detalhes de cada um.
 
-### `npm start`
+## Imagens das telas
+- **Tela Principal:
+![Menu principal](https://github.com/user-attachments/assets/1f3e3afb-c59a-4d43-8dcb-93421b6cec20)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Adição de Serviços:
+- ![Tela de criar](https://github.com/user-attachments/assets/02b831bd-5413-4eb9-ad93-65619fcaea14)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Tecnologias Utilizadas
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Frontend**: React.js
+- **Backend**: Node.js (Express) com JSON Server para simular o backend
+- **Estilos**: CSS Modules
+- **Gerenciamento de Rotas**: React Router
+- **Gerenciamento de Estado**: useState e useEffect
+- **Bibliotecas**:
+  - React
+  - React Router DOM
+  - JSON Server (simula um banco de dados local)
+  - React Icons (para ícones sociais)
 
-### `npm run build`
+## Como Rodar o Projeto
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Passo 1: Clonar o Repositório
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Primeiramente, clone o repositório do projeto para sua máquina local:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+git clone https://github.com/tscouto/costs.git
+```
 
-### `npm run eject`
+Passo 2: Instalar Dependências
+Após clonar o repositório, navegue até a pasta do projeto e instale as dependências necessárias utilizando o npm:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+cd costs
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Passo 3: Rodar o Projeto
+Com as dependências instaladas, basta rodar o projeto em seu ambiente local com o comando abaixo:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm start
+```
+Isso iniciará o servidor de desenvolvimento e abrirá o aplicativo no seu navegador.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Passo 4: Simulação de Backend
+Como o projeto usa o JSON Server para simular o backend, inicie o servidor JSON com o seguinte coman
 
-## Learn More
+```bash
+npm run server
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
